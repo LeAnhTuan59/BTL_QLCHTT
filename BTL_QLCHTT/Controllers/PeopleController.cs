@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using BTL_QLCH.Models.Process;
 using BTL_QLCHTT.Models;
-using BTL_QLCHTT.Models.Process;
 
 namespace BTL_QLCHTT.Controllers
 {
