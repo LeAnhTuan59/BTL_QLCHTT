@@ -25,8 +25,18 @@ namespace BTL_QLCHTT.Models.Process
             intPart = Convert.ToInt32(numPart) + 1;
             // bo sung ki tu 0 vao phan so cho du chieu dai
             // ket hop phan so voi phan chu de tra ve ma dong sinh
+            strResult = strPart + intPart;
             return strResult;
         }
 
+        internal string autoGenerateKey(object personID)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string AutoGenerateKey(object personID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

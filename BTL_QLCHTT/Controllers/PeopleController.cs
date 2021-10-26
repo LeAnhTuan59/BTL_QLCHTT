@@ -14,15 +14,15 @@ namespace BTL_QLCHTT.Controllers
     public class PeopleController : Controller
     {
         private QLCHTTDbContext db = new QLCHTTDbContext();
-        private StringProcess strPro = new StringProcess(); 
+        private StringProcess strPro = new StringProcess();
 
-        // GET: People
+        // GET: Person
         public ActionResult Index()
         {
             return View(db.Persons.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Person/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -37,25 +37,27 @@ namespace BTL_QLCHTT.Controllers
             return View(person);
         }
 
-        // GET: People/Create
+        // GET: Person/Create
         public ActionResult Create()
         {
-            string personKey = "";
-            var personID = db.Persons.ToList().OrderByDescending(m  => m.PersonID).FirstOrDefault().PersonID;
-            if (personID  != null)
+            var model = db.Persons.ToList();
+            if (model.Count == 0)
             {
-                personKey = "PER001";
-            }   
+                ViewBag.CustomerID = "PER001";
+            }
             else
             {
-                personKey = strPro.autoGenerateKey(personID);
+                //lấy ra mã KH mới nhất 
+                var idPerson = model.OrderByDescending(m => m.PersonID).FirstOrDefault().PersonID;
+                var newKey = strPro.AutoGenerateKey(idPerson);
+                ViewBag.PersonID = newKey;
+
             }
-            //truyen ma sinh tu dong ve view create
-            ViewBag.PerId = personKey;
             return View();
+
         }
 
-        // POST: People/Create
+        // POST: Person/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -72,7 +74,7 @@ namespace BTL_QLCHTT.Controllers
             return View(person);
         }
 
-        // GET: People/Edit/5
+        // GET: Person/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -87,7 +89,7 @@ namespace BTL_QLCHTT.Controllers
             return View(person);
         }
 
-        // POST: People/Edit/5
+        // POST: Person/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -103,7 +105,7 @@ namespace BTL_QLCHTT.Controllers
             return View(person);
         }
 
-        // GET: People/Delete/5
+        // GET: Person/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -118,7 +120,7 @@ namespace BTL_QLCHTT.Controllers
             return View(person);
         }
 
-        // POST: People/Delete/5
+        // POST: Person/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)

@@ -20,8 +20,8 @@
             @Html.LabelFor(model => model.PersonID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input name="PersonID"value="@ViewBag.PerId"/>
-                @Html.EditorFor(model => model.PersonID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PersonID, "", new { @class = "text-danger" })
+               @* @Html.EditorFor(model => model.PersonID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PersonID, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
